@@ -7,4 +7,6 @@
 */
 'use strict'
 
-console.log("Let's Go!!!");
+let firstHW = require("./modules/first-home-work.js");
+
+firstHW.consoleRec(['я', 'умею', 'писать', 'рекурсивные', 'функции'], 0);
