@@ -4,6 +4,7 @@ var browserify = require('gulp-browserify');
 var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 var browserSync = require('browser-sync').create();
+var run = require('gulp-run');
 
 var tplPath = './';
 
@@ -14,6 +15,7 @@ gulp.task('scripts', function() {
 		.pipe(plumber())
 		.pipe(rename("build.js"))
 		.pipe(gulp.dest(tplPath +'/app/'))
+		.pipe(run("node ./app/build.js").exec())
 });
 
 gulp.task('server', function(){
@@ -24,7 +26,7 @@ gulp.task('server', function(){
 	});
 });
 
-gulp.task('watch', ['scripts','server'], function () {
+gulp.task('watch', ['scripts'], function () {
 	gulp.watch(tplPath + '/scripts/**/*.js', ['scripts']);
 });
 
