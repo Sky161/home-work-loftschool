@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This if home work for online education Loftschool",
   "main": "gulpfile.js",
-  "dependencies": {
+  "devDependencies": {
     "browser-sync": "^2.10.1",
     "gulp": "^3.9.0",
     "gulp-browserify": "^0.5.1",

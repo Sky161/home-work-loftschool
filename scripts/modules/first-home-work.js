@@ -12,7 +12,7 @@ let consoleRec = function(arr, i){
 	console.log(arr[i]);
 	i++;
 
-	if(arr.length > i){
+	if (arr.length > i) {
 		consoleRec(arr, i);
 	}
 }
