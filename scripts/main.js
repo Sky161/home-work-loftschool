@@ -22,3 +22,6 @@ console.log(greaterThan4);
 console.log("############myMap############");
 let sqare = thirdHW.myMap(array, item => item * item);
 console.log(sqare);
+
+console.log("############mySlice############");
+console.log(thirdHW.mySlice(array, 0, -3));

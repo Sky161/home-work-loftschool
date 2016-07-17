@@ -39,8 +39,37 @@ let myMap = function(arr, func){
 	return newArr;
 }
 
+let mySlice = function(arr, start, end){
+	if(!Array.isArray(arr))
+		throw new Error("Передайте массив!");
+
+	if(typeof(start) != "number")
+		throw new Error("Первый аргумент должно быть число");
+
+	let arrLength = arr.length;
+	let newArr = [];
+	let i = start;
+
+	if(typeof(end) == "number"){
+		if(end > 0){
+			arrLength = end;
+		}
+		else if (end < 0){
+			arrLength += end;
+		}
+	}
+
+
+	for (i; i < arrLength; i++) {
+		newArr.push(arr[i]);
+	}
+
+	return newArr;
+}
+
 module.exports = {
 	myForEach,
 	myFilter,
-	myMap
+	myMap,
+	mySlice
 }
