@@ -12,4 +12,9 @@ const thirdHW = require("./modules/third-home-work.js");
 
 let array = [1, 2, 3, 4, 5, 6];
 
+console.log("############ForEach############");
 thirdHW.myForEach(array, (item) => console.log(item));
+
+console.log("############myFilter############");
+let greaterThan4 = thirdHW.myFilter(array, item => item > 4);
+console.log(greaterThan4);

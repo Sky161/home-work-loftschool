@@ -15,6 +15,20 @@ let myForEach = function(arr, func){
 	}
 }
 
+let myFilter = function(arr, func){
+	let arrLength = arr.length;
+	let newArr = [];
+
+	for(let i = 0; i < arrLength; i++){
+		if(func(arr[i]) == true){
+			newArr.push(arr[i]);
+		}
+	}
+
+	return newArr;
+}
+
 module.exports = {
-	myForEach
+	myForEach,
+	myFilter
 }
