@@ -16,5 +16,9 @@ console.log("############ForEach############");
 thirdHW.myForEach(array, (item) => console.log(item));
 
 console.log("############myFilter############");
-let greaterThan4 = thirdHW.myFilter(array, item => item > 4);
+let greaterThan4	 = thirdHW.myFilter(array, item => item > 4);
 console.log(greaterThan4);
+
+console.log("############myMap############");
+let sqare = thirdHW.myMap(array, item => item * item);
+console.log(sqare);

@@ -28,7 +28,19 @@ let myFilter = function(arr, func){
 	return newArr;
 }
 
+let myMap = function(arr, func){
+	let arrLength = arr.length;
+	let newArr = [];
+
+	for(let i = 0; i < arrLength; i++){
+		newArr.push(func(arr[i]));
+	}
+
+	return newArr;
+}
+
 module.exports = {
 	myForEach,
-	myFilter
+	myFilter,
+	myMap
 }
