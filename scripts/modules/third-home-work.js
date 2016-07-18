@@ -67,9 +67,30 @@ let mySlice = function(arr, start, end){
 	return newArr;
 }
 
+let myReduce = function(arr, func, startInter){
+	let arrLength = arr.length;
+	let result;
+	let i;
+
+	if(startInter == undefined){
+		i = 2;
+		result = func(arr[0], arr[1]);
+	}else{
+		i = 1;
+		result = func(startInter, arr[0]);
+	}
+
+	for (i; i < arrLength; i++) {
+		result = func(result, arr[i]);
+	}
+
+	return result;
+}
+
 module.exports = {
 	myForEach,
 	myFilter,
 	myMap,
-	mySlice
+	mySlice,
+	myReduce
 }
