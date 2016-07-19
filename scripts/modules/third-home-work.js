@@ -87,10 +87,22 @@ let myReduce = function(arr, func, startInter){
 	return result;
 }
 
+let mySplice = function(arr, start, end){
+	let newArr = [];
+
+	if( end != 0 ){
+		let size = start + end;
+		for (let i = start; i < size; i++) {
+			delete arr[i];
+		}
+	}
+}
+
 module.exports = {
 	myForEach,
 	myFilter,
 	myMap,
 	mySlice,
-	myReduce
+	myReduce,
+	mySplice
 }

@@ -28,3 +28,11 @@ console.log(thirdHW.mySlice(array, 0, -3));
 
 console.log("############myReduce############");
 console.log(thirdHW.myReduce(array, (a, b) => `${a} + ${b}`, 10));
+
+console.log("############splice############");
+array.splice(1, 3, 10, 20);
+console.log(array);
+
+console.log("############mySplice############");
+thirdHW.mySplice(array, 1, 2, "ts", 25);
+console.log(array);
