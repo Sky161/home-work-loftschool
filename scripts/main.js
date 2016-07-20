@@ -30,10 +30,6 @@ console.log(thirdHW.mySlice(array, 0, -3));
 console.log("############myReduce############");
 console.log(thirdHW.myReduce(array, (a, b) => `${a} + ${b}`, 10));
 
-console.log("############splice############");
-array.splice(1, 2);
-console.log(array);
-
 console.log("############mySplice############");
-thirdHW.mySplice(array2, 1, 2);
+thirdHW.mySplice(array2, -3, 4, "new", 2);
 console.log(array2);

@@ -89,28 +89,32 @@ let myReduce = function(arr, func, startInter){
 
 let mySplice = function( arr, start, end ) {
 	let newArr = [];
-	let startInner = 0;
-	let size = 0;
+	let forBeforeLength = 0;
+	let afterStartCounter = 0;
 
-	if( start > 0){
-		startInner = start;
-		size = start + end;
-	} else {
-		startInner = arr.length + start;
-		size = arr.length
-	}
-
-	if( end != 0 ) {
-		for ( let i = startInner; i < size; i++ ) {
-			delete arr[i];
+	if (end != 0) {
+		if(start > 0){
+			forBeforeLength = start;
+			afterStartCounter = end + 1;
+		} else {
+			forBeforeLength = arr.length + start;
+			afterStartCounter = arr.length + start + end;
 		}
+		
+		for (let i = 0; i < forBeforeLength; i++) {
+			newArr.push(arr[i]);
+		}
+		if (arguments.length > 3){
+			for (let i = 3; i < arguments.length; i++) {
+				newArr.push(arguments[i]);
+			}
+		}
+		for (let i = afterStartCounter; i < arr.length; i++) {
+			newArr.push(arr[i]);
+		}
+		arr.length = 0;
+		myForEach(newArr, (item , i) => arr[i] = item);
 	}
-
-	newArr = myFilter( arr, ( item ) => item != undefined );
-
-	arr.length = 0;
-
-	myForEach( newArr, ( item, i ) => arr[i] = item );
 }
 
 module.exports = {
