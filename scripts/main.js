@@ -11,6 +11,7 @@
 const thirdHW = require("./modules/third-home-work.js");
 
 let array = [1, 2, 3, 4, 5, 6];
+let array2 = [1, 2, 3, 4, 5, 6];
 
 console.log("############ForEach############");
 thirdHW.myForEach(array, (item) => console.log(item));
@@ -30,9 +31,9 @@ console.log("############myReduce############");
 console.log(thirdHW.myReduce(array, (a, b) => `${a} + ${b}`, 10));
 
 console.log("############splice############");
-array.splice(1, 3, 10, 20);
+array.splice(1, 2);
 console.log(array);
 
 console.log("############mySplice############");
-thirdHW.mySplice(array, 1, 2, "ts", 25);
-console.log(array);
+thirdHW.mySplice(array2, 1, 2);
+console.log(array2);
