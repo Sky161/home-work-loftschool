@@ -92,15 +92,17 @@ let mySplice = function( arr, start, end ) {
 	let forBeforeLength = 0;
 	let afterStartCounter = 0;
 
-	if (end != 0) {
 		if(start > 0){
 			forBeforeLength = start;
 			afterStartCounter = end + 1;
-		} else {
+		} else if(start < 0){
 			forBeforeLength = arr.length + start;
 			afterStartCounter = arr.length + start + end;
+		}else{
+			forBeforeLength = start;
+			afterStartCounter = end;
 		}
-		
+
 		for (let i = 0; i < forBeforeLength; i++) {
 			newArr.push(arr[i]);
 		}
@@ -114,7 +116,6 @@ let mySplice = function( arr, start, end ) {
 		}
 		arr.length = 0;
 		myForEach(newArr, (item , i) => arr[i] = item);
-	}
 }
 
 module.exports = {
