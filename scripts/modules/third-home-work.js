@@ -94,7 +94,7 @@ let mySplice = function( arr, start, end ) {
 
 		if(start > 0){
 			forBeforeLength = start;
-			afterStartCounter = end + 1;
+			afterStartCounter = start + end;
 		} else if(start < 0){
 			forBeforeLength = arr.length + start;
 			afterStartCounter = arr.length + start + end;
