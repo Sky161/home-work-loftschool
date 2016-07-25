@@ -89,6 +89,7 @@ let myReduce = function(arr, func, startInter){
 
 let mySplice = function( arr, start, end ) {
 	let newArr = [];
+	let returnArr = [];
 	let forBeforeLength = 0;
 	let afterStartCounter = 0;
 
@@ -103,6 +104,10 @@ let mySplice = function( arr, start, end ) {
 			afterStartCounter = end;
 		}
 
+		if(end > arr.length){
+			end = arr.length;
+		}
+
 		for (let i = 0; i < forBeforeLength; i++) {
 			newArr.push(arr[i]);
 		}
@@ -114,8 +119,14 @@ let mySplice = function( arr, start, end ) {
 		for (let i = afterStartCounter; i < arr.length; i++) {
 			newArr.push(arr[i]);
 		}
+		if(end > 0) {
+			for (let i = start; i < start + end; i++) {
+				returnArr.push(arr[i]);
+			}
+		}
 		arr.length = 0;
 		myForEach(newArr, (item , i) => arr[i] = item);
+		return returnArr;
 }
 
 module.exports = {
