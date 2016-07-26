@@ -37,9 +37,11 @@ gulp.task('server', function(){
 gulp.task('watch', ['jade', 'scripts', 'server'], function () {
 	watch(tplPath + '/scripts/**/*.js', function(){
 		gulp.start("scripts");
+		browserSync.reload();
 	});
 	watch(tplPath + '/jade/**/*.jade', function(){
 		gulp.start("jade");
+		browserSync.reload();
 	});
 });
 
