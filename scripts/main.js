@@ -8,6 +8,8 @@
 'use strict';
 
 //Fourth home work
-const fouthHW1 = require("./modules/fourth-home-work/prepend.js");
+const fourthHW1 = require("./modules/fourth-home-work/prepend.js");
+const fourthHW2 = require("./modules/fourth-home-work/deleteTextNodes.js");
 
-fouthHW1.prepend(".target", ".move-paragraph");
+fourthHW1.prepend(".target", ".move-paragraph");
+fourthHW2.deleteTextNodes(".delete-container");
