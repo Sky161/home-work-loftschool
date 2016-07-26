@@ -10,4 +10,4 @@
 //Fourth home work
 const fouthHW1 = require("./modules/fourth-home-work/prepend.js");
 
-fouthHW1.prepend();
+fouthHW1.prepend(".target", ".move-paragraph");
