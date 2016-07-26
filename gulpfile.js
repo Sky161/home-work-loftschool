@@ -4,7 +4,8 @@ var browserify = require('gulp-browserify');
 var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 var browserSync = require('browser-sync').create();
-var run = require('gulp-run');
+var watch = require('gulp-watch');
+var jade = require('gulp-jade');
 
 var tplPath = './';
 
@@ -15,7 +16,14 @@ gulp.task('scripts', function() {
 		.pipe(plumber())
 		.pipe(rename("build.js"))
 		.pipe(gulp.dest(tplPath +'/app/'))
-		.pipe(run("node ./app/build.js").exec())
+});
+
+gulp.task('jade', function () {
+	gulp.src(tplPath + '/jade/*.jade')
+		.pipe(plumber())
+		.pipe(jade({pretty: true}))
+		.pipe(gulp.dest(tplPath + './app/'))
+		.pipe(browserSync.stream());
 });
 
 gulp.task('server', function(){
@@ -26,8 +34,13 @@ gulp.task('server', function(){
 	});
 });
 
-gulp.task('watch', ['scripts'], function () {
-	gulp.watch(tplPath + '/scripts/**/*.js', ['scripts']);
+gulp.task('watch', ['jade', 'scripts', 'server'], function () {
+	watch(tplPath + '/scripts/**/*.js', function(){
+		gulp.start("scripts");
+	});
+	watch(tplPath + '/jade/**/*.jade', function(){
+		gulp.start("jade");
+	});
 });
 
-gulp.task('default', ['scripts']);
+gulp.task('default', ['jade', 'scripts']);
