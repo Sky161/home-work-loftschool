@@ -16,9 +16,11 @@ const deleteTextNodes = (element) => {
 
 	let elem = document.querySelector(element);
 
-	elem.childNodes.forEach((element) => {
-		if(element.nodeName == "#text"){
-			elem.removeChild(element);
+	elem.childNodes.forEach((item) => {
+		if(item.nodeType == 3){
+			item.parentNode.removeChild(item);
+		}else {
+			console.log(1);
 		}
 	});
 }
