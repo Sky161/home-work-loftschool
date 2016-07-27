@@ -14,14 +14,25 @@ const deleteTextNodes = (element) => {
 		throw new Error("Элемент не найден");
 	}
 
-	let elem = document.querySelector(element);
+	let elem;
+	let removeArr = [];
 
-	elem.childNodes.forEach((item) => {
-		if(item.nodeType == 3){
-			item.parentNode.removeChild(item);
-		}else {
-			console.log(1);
+	if(typeof element == "string"){
+		elem = document.querySelector(element);
+	}else{
+		elem = element;
+	}
+
+	for (let i = 0; i < elem.childNodes.length; i++) {
+		if(elem.childNodes[i].nodeType == 3){
+			removeArr.push(elem.childNodes[i]);
+		}else{
+			deleteTextNodes(elem.childNodes[i]);
 		}
+	}
+
+	removeArr.forEach((item) => {
+		item.parentNode.removeChild(item);
 	});
 }
 
