@@ -10,6 +10,8 @@
 //Fourth home work
 const fourthHW1 = require("./modules/fourth-home-work/prepend.js");
 const fourthHW2 = require("./modules/fourth-home-work/deleteTextNodes.js");
+const fourthHW3 = require("./modules/fourth-home-work/scandom.js");
 
 fourthHW1.prepend(".target", ".move-paragraph");
 fourthHW2.deleteTextNodes(".delete-container");
+fourthHW3.scanDOM();
