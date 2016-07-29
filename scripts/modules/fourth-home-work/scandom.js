@@ -7,14 +7,38 @@
 */
 'use strict';
 
-const scanDOM = () => {
+const scanDOM = (selector) => {
 	let bodyChild = document.querySelector("body").childNodes;
 	let objectDom = {}
+
+	//console.log(bodyChild);
 
 	for(let i in bodyChild){
 		if(i != "item" && i != "length"){
 			let item = bodyChild[i].nodeName.toLowerCase();
-			if(objectDom.hasOwnProperty([item])){
+			let id = bodyChild[i].id;
+			let classList = bodyChild[i].className;
+
+
+			if(classList){
+				classList = classList.split(" ");
+
+				classList.forEach((item) => {
+					let classDom = "." + item;
+					
+					if(objectDom.hasOwnProperty(classDom)){
+						objectDom[classDom]++;
+					}else{
+						objectDom[classDom] = 1;
+					}
+				});
+			}
+
+			if(id){
+				objectDom["#" + id] = 1;
+			}
+
+			if(objectDom.hasOwnProperty(item)){
 				objectDom[item]++;
 			}else{
 				objectDom[item] = 1;
