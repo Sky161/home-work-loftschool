@@ -7,25 +7,23 @@
 */
 'use strict';
 
-const scanDOM = (selector) => {
-	let bodyChild = document.querySelector("body").childNodes;
-	let objectDom = {}
+const scanDOM = () => {
+	let objectDom = {};
 
-	//console.log(bodyChild);
+	let select = document.querySelector("body").childNodes;
 
-	for(let i in bodyChild){
-		if(i != "item" && i != "length"){
-			let item = bodyChild[i].nodeName.toLowerCase();
-			let id = bodyChild[i].id;
-			let classList = bodyChild[i].className;
-
+	const count = (atr) =>{
+		for(let i = 0; i < atr.length; i++){
+			let item = atr[i].nodeName.toLowerCase();
+			let id = atr[i].id;
+			let classList = atr[i].className;
 
 			if(classList){
 				classList = classList.split(" ");
 
 				classList.forEach((item) => {
 					let classDom = "." + item;
-					
+
 					if(objectDom.hasOwnProperty(classDom)){
 						objectDom[classDom]++;
 					}else{
@@ -45,6 +43,18 @@ const scanDOM = (selector) => {
 			}
 		}
 	}
+
+	const childBeginer = (atr) => {
+		for(let i = 0; i < atr.length; i++){
+			if(atr[i].childNodes.length > 0){
+				count(atr[i].childNodes);
+				childBeginer(atr[i].childNodes);
+			}
+		}
+	}
+
+	count(select);
+	childBeginer(select);
 
 	console.log(objectDom);
 }
