@@ -6,16 +6,21 @@
   "devDependencies": {
     "browser-sync": "^2.10.1",
     "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
     "gulp-browserify": "^0.5.1",
     "gulp-jade": "^1.1.0",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-run": "^1.7.1",
+    "gulp-sass": "^2.3.2",
     "gulp-watch": "^4.3.9"
   },
   "scripts": {
     "postinstall": "gulp"
   },
   "author": "Andrey Chechkin",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "normalize-css": "^2.3.1"
+  }
 }

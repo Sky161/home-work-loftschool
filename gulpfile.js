@@ -3,6 +3,8 @@ var gulp = require('gulp');
 var browserify = require('gulp-browserify');
 var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
+var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
 var browserSync = require('browser-sync').create();
 var watch = require('gulp-watch');
 var jade = require('gulp-jade');
@@ -26,6 +28,16 @@ gulp.task('jade', function () {
 		.pipe(browserSync.stream());
 });
 
+gulp.task('sass', function () {
+	gulp.src(tplPath + '/sass/**/*.sass')
+		.pipe(plumber())
+		.pipe(sass().on('error', sass.logError))
+		.pipe(rename('build.css'))
+		.pipe(autoprefixer('last 10 versions', '> 1%', 'ie 9'))
+		.pipe(gulp.dest(tplPath + '/app/'))
+		.pipe(browserSync.stream());
+});
+
 gulp.task('server', function(){
 	browserSync.init({
 		server: {
@@ -34,7 +46,7 @@ gulp.task('server', function(){
 	});
 });
 
-gulp.task('watch', ['jade', 'scripts', 'server'], function () {
+gulp.task('watch', ['jade', 'sass', 'scripts', 'server'], function () {
 	watch(tplPath + '/scripts/**/*.js', function(){
 		gulp.start("scripts");
 		browserSync.reload();
@@ -43,6 +55,10 @@ gulp.task('watch', ['jade', 'scripts', 'server'], function () {
 		gulp.start("jade");
 		browserSync.reload();
 	});
+	watch(tplPath + '/sass/**/*.sass', function(){
+		gulp.start("sass");
+		browserSync.reload();
+	});
 });
 
-gulp.task('default', ['jade', 'scripts']);
+gulp.task('default', ['jade', 'sass', 'scripts']);

@@ -7,14 +7,8 @@
 */
 'use strict';
 
-let consoleRec = function(arr, i){
+const akardeon = () => {
 
-	console.log(arr[i]);
-	i++;
-
-	if (arr.length > i) {
-		consoleRec(arr, i);
-	}
 }
 
-module.exports = { consoleRec };
+module.exports = { akardeon }
