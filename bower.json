@@ -1,0 +1,16 @@
+{
+  "name": "HomeWorkLoftschool",
+  "description": "",
+  "main": "gulpfile.js",
+  "authors": [
+    "Andrey Chechkin"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Sky161/test-loftschool",
+  "moduleType": [
+    "globals"
+  ],
+  "dependencies": {
+    "normalize-css": "normalize.css#^4.1.1"
+  }
+}

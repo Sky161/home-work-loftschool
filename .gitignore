@@ -1,3 +1,6 @@
 .DS_Store
-app/
+app/build.css
+app/build.js
+app/*.html
+app/components
 node_modules/

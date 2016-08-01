@@ -16,11 +16,8 @@
     "gulp-watch": "^4.3.9"
   },
   "scripts": {
-    "postinstall": "gulp"
+    "postinstall": "bower i && gulp"
   },
   "author": "Andrey Chechkin",
-  "license": "ISC",
-  "dependencies": {
-    "normalize-css": "^2.3.1"
-  }
+  "license": "ISC"
 }
