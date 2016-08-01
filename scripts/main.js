@@ -9,3 +9,7 @@
 
 //fifth home work
 let eventsHW = require("./modules/05-events.js");
+
+window.onload = () => {
+	eventsHW.akardeon();
+}
