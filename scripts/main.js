@@ -12,4 +12,5 @@ let eventsHW = require("./modules/05-events.js");
 
 window.onload = () => {
 	eventsHW.akardeon();
+	eventsHW.dragAndDrop();
 }
