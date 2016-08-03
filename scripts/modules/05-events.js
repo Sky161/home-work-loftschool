@@ -17,6 +17,8 @@ const akardeon = () => {
 			let elements = parent.children;
 
 			if(target.nodeName == "A") {
+				e.preventDefault();
+
 				for(let i = 0; i < elements.length; i++) {
 					elements[i].classList.remove("active");
 					elements[i].children[1].style.display = "none";
@@ -68,6 +70,27 @@ const dragAndDrop = () => {
 		element.id = "newElement";
 
 		container.appendChild(element);
+
+		let dragable = false;
+		let layerY = 0;
+		let layerX = 0;
+
+		element.addEventListener("mousedown", (e) => {
+			dragable = true;
+			layerY = e.layerY;
+			layerX = e.layerX;
+		});
+
+		document.addEventListener("mousemove", (e) => {
+			if(dragable){
+				element.style.top = e.clientY - layerY + "px";
+				element.style.left = e.clientX - layerX + "px";
+			}
+		});
+
+		element.addEventListener("mouseup", (e) => {
+			dragable = false;
+		});
 	});
 }
 
