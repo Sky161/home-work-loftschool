@@ -62,10 +62,6 @@ const dragAndDrop = () => {
 				return res;
 			}
 
-			if(divElem) {
-				container.removeChild(divElem);
-			}
-
 			let w = getRandomInt(100, 1000);
 			let h = getRandomInt(100, 1000);
 			let l = getRandomInt(0, 500);
@@ -78,7 +74,7 @@ const dragAndDrop = () => {
 			element.style.left = l + "px";
 			element.style.top = t + "px";
 			element.style.backgroundColor = color;
-			element.id = "newElement";
+			element.className = "newElement";
 
 			container.appendChild(element);
 
