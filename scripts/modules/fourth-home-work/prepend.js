@@ -19,7 +19,7 @@ const prepend = (container, newElement) => {
 		throw new Error("Элемент который нужно переместить не найден");
 	}
 
-	containerElem.insertBefore(newElemInner, containerElem.children[0]);
+	containerElem.insertBefore(newElemInner, containerElem.childNodes[0]);
 }
 
 module.exports = { prepend }
