@@ -7,10 +7,9 @@
 */
 'use strict';
 
-//fifth home work
-let eventsHW = require("./modules/05-events.js");
+//async
+const homework1 = require("./modules/06-async/timer");
 
-window.onload = () => {
-	eventsHW.akardeon();
-	eventsHW.dragAndDrop();
-}
+homework1.timer(3000).then(
+	() => console.log('я вывелась через 3 секунды')
+);
