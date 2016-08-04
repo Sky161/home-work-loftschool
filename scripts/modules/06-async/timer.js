@@ -1,5 +1,5 @@
 /*
-* First home work
+* Home work async, function timer
 *
 * @author Andrey Chechkin
 * @license GNU/AGPLv3
