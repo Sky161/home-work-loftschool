@@ -1,7 +1,7 @@
 {
   "name": "HomeWorkLoftschool",
   "description": "",
-  "main": "gulpfile.js",
+  "main": "app/",
   "authors": [
     "Andrey Chechkin"
   ],
@@ -11,6 +11,7 @@
     "globals"
   ],
   "dependencies": {
-    "normalize-css": "normalize.css#^4.1.1"
+    "normalize-css": "normalize.css#^4.1.1",
+    "bootstrap-sass": "^3.3.7"
   }
 }
