@@ -7,15 +7,13 @@
 */
 'use strict';
 
-var bootstrap = require("../app/components/bootstrap-sass/assets/javascripts/bootstrap.min.js");
-var $ = require("../app/components/jquery/dist/jquery.min.js");
-
 //async
 const homework1 = require("./modules/06-async/timer.js");
 const homework2 = require("./modules/06-async/list-city.js");
 
+window.test = "test";
+
 window.onload = () => {
-	bootstrap($);
 
 	homework1.timer(3000).then(
 		() => console.log('я вывелась через 3 секунды')
@@ -32,7 +30,7 @@ window.onload = () => {
 
 			resArr.sort();
 
-			let container = document.querySelector("body .content .container");
+			let container = document.querySelector("body #main-page");
 			let ul = document.createElement("ul");
 
 			container.appendChild(ul);
