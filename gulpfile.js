@@ -14,7 +14,9 @@ var tplPath = './';
 gulp.task('scripts', function() {
 
 	gulp.src(tplPath + 'scripts/main.js')
-		.pipe(browserify())
+		.pipe(browserify({
+			shim: require("./browserify-shim.json")
+		}))
 		.pipe(plumber())
 		.pipe(rename("build.js"))
 		.pipe(gulp.dest(tplPath +'/app/'))
