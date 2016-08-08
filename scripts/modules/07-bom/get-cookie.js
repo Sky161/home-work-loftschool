@@ -26,7 +26,39 @@ const getCookie = () => {
 		cookieObj[item[0]] = item[1];
 	});
 
-	console.log(cookieObj);
+	let tableBody = document.querySelector("table tbody");
+	let trHtml = "";
+
+	for (let item in cookieObj) {
+		let key = item;
+		let val = cookieObj[item];
+
+		trHtml += `
+			<tr>
+				<td>${key}</td>
+				<td>${val}</td>
+				<td><a href="${key}"> Удалить</a></td>
+			</tr>
+		`;
+	}
+
+	tableBody.innerHTML = trHtml;
+
+	tableBody.onclick = (e) => {
+		if(e.target.localName === "a") {
+			let target = e.target;
+			let nameCookie = target.getAttribute("href");
+			let msg = confirm(`Удалить cookie с именем ${nameCookie}`);
+
+			e.preventDefault();
+
+			if(msg) {
+				console.log(`Удалена cookie с именем ${nameCookie}`);
+			}else{
+				console.log("Отмена");
+			}
+		}
+	}
 }
 
 module.exports = { getCookie }
