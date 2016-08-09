@@ -77,7 +77,7 @@ window.onload = () => {
 
 				if(inpVal.length != 0){
 					responseArr = resArr.filter((item) => {
-						if(item.name.indexOf(inpVal) != -1){
+						if(item.name.toLowerCase().indexOf(inpVal.toLowerCase()) != -1){
 							return item;
 						}
 					});
