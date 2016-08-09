@@ -7,12 +7,6 @@
 */
 'use strict';
 
-const timer = (time) => {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve();
-		}, time);
-	});
-}
+const timer = (time) => new Promise((resolve) => setTimeout(resolve, time));
 
 module.exports = { timer }
