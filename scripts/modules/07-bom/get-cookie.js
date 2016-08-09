@@ -51,11 +51,10 @@ const getCookie = () => {
 			let msg = confirm(`Удалить cookie с именем ${nameCookie}`);
 
 			e.preventDefault();
-
 			if(msg) {
-				console.log(`Удалена cookie с именем ${nameCookie}`);
-			}else{
-				console.log("Отмена");
+				e.target.closest("tr").remove();
+				date.setDate(date.getDate() - 1);
+				document.cookie = `${nameCookie}=; expires=${date.toUTCString()}`;
 			}
 		}
 	}
