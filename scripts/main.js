@@ -8,9 +8,10 @@
 'use strict';
 
 //fifth home work
-let eventsHW = require("./modules/05-events.js");
+let eventsHW1 = require("./modules/05-events/akardeon.js");
+let eventsHW2 = require("./modules/05-events/drag-and-drop.js");
 
 window.onload = () => {
-	eventsHW.akardeon();
-	eventsHW.dragAndDrop();
+	eventsHW1.akardeon();
+	eventsHW2.dragAndDrop();
 }
