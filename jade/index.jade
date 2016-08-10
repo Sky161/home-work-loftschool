@@ -10,14 +10,11 @@ block content
 					th Value
 					th Delete
 			tbody
-		form.form-inline#addCookie
+		form.form-inline(name='addCookie')
 			.form-group
-				label.sr-only(for='exampleInputEmail3') имя
-				input#name.form-control(type='text', placeholder='имя')
+				input.form-control(type='text', placeholder='имя', name='name')
 			.form-group
-				label.sr-only(for='exampleInputPassword3') значение
-				input#value.form-control(type='text', placeholder='значение')
+				input.form-control(type='text', placeholder='значение', name='value')
 			.form-group
-				label.sr-only(for='exampleInputPassword3') срок годности
-				input#srok.form-control(type='text', placeholder='срок годности')
-			button.btn.btn-success(type='submit') Установить
+				input.form-control(type='text', placeholder='срок годности', name="duration")
+			input.btn.btn-success(type='submit', value="Установить")
