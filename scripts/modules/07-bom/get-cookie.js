@@ -12,12 +12,14 @@ const getCookie = () => {
 	let cookieObj = {};
 	let cookieArr = [];
 
-	date.setDate(date.getDate() + 1);
+	const addCookie = (name, value, duration) => {
+		date.setDate(date.getDate() + duration);
+		document.cookie = `${name}=${value}; path=/; expires=${date.toUTCString()}`;
+	}
 
-	document.cookie = `name=Andrey; path=/; expires=${date.toUTCString()}`;
-	document.cookie = `surname=Chechkin; path=/; expires=${date.toUTCString()}`;
-	document.cookie = `age=23; path=/; expires=${date.toUTCString()}`;
-	document.cookie = `learn=Javascript; path=/; expires=${date.toUTCString()}`;
+	addCookie("name", "Andrey", 1);
+	addCookie("surname", "Chechkin", 2);
+	addCookie("age", "23", 3);
 
 	cookieArr = document.cookie.split(";");
 
@@ -53,11 +55,49 @@ const getCookie = () => {
 			e.preventDefault();
 			if(msg) {
 				e.target.closest("tr").remove();
-				date.setDate(date.getDate() - 1);
+				date.setDate(0);
 				document.cookie = `${nameCookie}=; expires=${date.toUTCString()}`;
 			}
 		}
 	}
+
+	let formAddCookie = document.forms.addCookie;
+
+	formAddCookie.addEventListener("submit", function(e) {
+		let inputs = this.elements
+		let error = false;
+
+		e.preventDefault();
+		for(let i = 0; i < inputs.length; i++) {
+			let inputsVal = inputs[i].value;
+
+			if(inputsVal.length == 0) {
+				error = true;
+				break;
+			}else{
+				error = false;
+			}
+		}
+
+		if(error) {
+			alert("Заполните все поля формы");
+		} else {
+			let name = inputs.name.value;
+			let val = inputs.value.value;
+			let duration = inputs.duration.value;
+			let tr = document.createElement("tr");
+
+			addCookie(name, val, duration);
+			tr.innerHTML = `
+				<td>${name}</td>
+				<td>${val}</td>
+				<td><a href="${name}"> Удалить</a></td>
+			`;
+			tableBody.appendChild(tr);
+			formAddCookie.reset();
+		}
+
+	});
 }
 
 module.exports = { getCookie }
