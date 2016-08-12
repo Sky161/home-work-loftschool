@@ -9,18 +9,22 @@
 
 const dragFunction = require("./drag-and-drop/drag.js");
 const generateElement = require("./drag-and-drop/generate-elements.js");
+const setCookie = require("./drag-and-drop/set-cookie.js");
 
 const dragAndDrop = () => {
-	let container = document.querySelector("#drag-and-drop");
-	let btn = document.querySelector("#create-element");
+	let container = document.querySelector("#drag-and-drop .area");
+	let btnAdd = document.querySelector("#create-element");
+	let btnSave = document.querySelector("#save");
 
-	if(btn) {
-		btn.addEventListener("click", (e) => {
+	if(container) {
+		btnAdd.addEventListener("click", (e) => {
 			let newElem = generateElement();
-
 			container.appendChild(newElem);
-
 			dragFunction(newElem);
+		});
+
+		btnSave.addEventListener("click", (e) => {
+			setCookie();
 		});
 	}
 }

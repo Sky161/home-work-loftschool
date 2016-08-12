@@ -6,10 +6,10 @@
 * @see {@link https://www.gnu.org/licenses/agpl-3.0.txt|License}
 */
 'use strict';
+let idCount = 0;
 
 module.exports = () => {
 	let content = document.querySelector(".content #drag-and-drop");
-	let contentChildren = content.children;
 
 	const getRandomInt = (min, max) => {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -38,7 +38,9 @@ module.exports = () => {
 	element.style.top = t + "px";
 	element.style.backgroundColor = color;
 	element.className = "newElement";
-	element.id = `newElement${contentChildren.length}`;
+	element.id = `newElement${idCount}`;
+
+	idCount++;
 
 	return element;
 }
