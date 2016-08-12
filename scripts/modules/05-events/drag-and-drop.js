@@ -10,6 +10,7 @@
 const dragFunction = require("./drag-and-drop/drag.js");
 const generateElement = require("./drag-and-drop/generate-elements.js");
 const setCookie = require("./drag-and-drop/set-cookie.js");
+const parseCookie = require("./drag-and-drop/parse-cookie.js");
 
 const dragAndDrop = () => {
 	let container = document.querySelector("#drag-and-drop .area");
@@ -20,12 +21,14 @@ const dragAndDrop = () => {
 		btnAdd.addEventListener("click", (e) => {
 			let newElem = generateElement();
 			container.appendChild(newElem);
-			dragFunction(newElem);
 		});
 
 		btnSave.addEventListener("click", (e) => {
 			setCookie();
 		});
+
+		parseCookie();
+		dragFunction();
 	}
 }
 
