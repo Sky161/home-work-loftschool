@@ -10,12 +10,12 @@
 const getCookie = () => {
 	let date = new Date;
 	let cookieObj = {};
-	let cookieArr = [];
+	let cookieArr;
 
 	const addCookie = (name, value, duration) => {
 		date.setDate(date.getDate() + duration);
 		document.cookie = `${name}=${value}; path=/; expires=${date.toUTCString()}`;
-	}
+	};
 
 	addCookie("name", "Andrey", 1);
 	addCookie("surname", "Chechkin", 2);
@@ -59,12 +59,12 @@ const getCookie = () => {
 				document.cookie = `${nameCookie}=; expires=${date.toUTCString()}`;
 			}
 		}
-	}
+	};
 
 	let formAddCookie = document.forms.addCookie;
 
 	formAddCookie.addEventListener("submit", function(e) {
-		let inputs = this.elements
+		let inputs = this.elements;
 		let error = false;
 
 		e.preventDefault();
@@ -98,6 +98,13 @@ const getCookie = () => {
 		}
 
 	});
-}
 
-module.exports = { getCookie }
+	formAddCookie.elements.duration.addEventListener("keyup", (e) => {
+		let reg = new RegExp('^[0-9]+$');
+		if(!reg.test(e.target.value)){
+			e.target.value = "";
+		}
+	});
+};
+
+module.exports = { getCookie };

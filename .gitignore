@@ -4,3 +4,4 @@ app/build.js
 app/*.html
 app/components
 node_modules/
+.idea
