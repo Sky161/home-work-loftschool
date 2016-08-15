@@ -9,5 +9,9 @@
 		"depends": {
 			"jquery": "$"
 		}
+	},
+	"handlebars": {
+		"path": "./app/components/handlebars/handlebars.min.js",
+		"exports": null
 	}
 }
