@@ -41,9 +41,29 @@ window.onload = () => {
 			let templateListHtml = document.getElementById("list-template").innerHTML;
 			let compileTmp = handlebars.compile(templateListHtml);
 			let resultContainer = document.getElementById("result");
-			console.log(resArr);
+			let input = document.getElementById("get-city");
+			let searchArr = [];
+
 			let result = compileTmp({"cities": resArr});
-			resultContainer.innerHTML += result;
-	});
+			resultContainer.innerHTML = result;
+
+			input.addEventListener("input", (e) => {
+				let val = e.target.value;
+				let searchArr = [];
+
+				if(val.length > 0) {
+					searchArr = resArr.filter((item) => {
+						if(item.name.toLowerCase().indexOf(val.toLowerCase()) != -1){
+							return item;
+						}
+					});
+				}else{
+					searchArr = resArr;
+				}
+				
+				result = compileTmp({"cities": searchArr});
+				resultContainer.innerHTML = result;
+			});
+	})
 
 }
