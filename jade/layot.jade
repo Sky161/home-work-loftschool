@@ -29,4 +29,7 @@ html(lang='ru')
 						strong Andrey Chechkin
 		
 		script(id="list-template" type="text/x-handlebars-template")
-			h1 {{title}}
+			ul.
+				{{#each cities}}
+					#[li {{name}}]
+				{{/each}}

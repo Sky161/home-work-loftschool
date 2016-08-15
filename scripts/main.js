@@ -37,11 +37,12 @@ window.onload = () => {
 
 	homework2.list("https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json").then(
 		(xhr) => {
+			let resArr = sortArray(xhr.response);
 			let templateListHtml = document.getElementById("list-template").innerHTML;
 			let compileTmp = handlebars.compile(templateListHtml);
 			let resultContainer = document.getElementById("result");
-
-			let result = compileTmp({title: "Hello"});
+			console.log(resArr);
+			let result = compileTmp({"cities": resArr});
 			resultContainer.innerHTML += result;
 	});
 
