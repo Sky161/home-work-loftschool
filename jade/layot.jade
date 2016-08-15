@@ -5,7 +5,8 @@ html(lang='ru')
 		meta(http-equiv='X-UA-Compatible', content='IE=edge')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		link(rel="stylesheet", href="build.css")
-		script(type="text/javascript" src="build.js")
+		script(src="//vk.com/js/api/openapi.js")
+		script(src="build.js")
 		title Test-Loftschool
 		
 	body
@@ -20,6 +21,11 @@ html(lang='ru')
 							span.icon-bar
 						a.navbar-brand(href='/') Andrey Chechkin
 					#navbar.collapse.navbar-collapse
+						ul.nav.navbar-nav
+							li
+								a(href='/') Список городов
+							li
+								a(href='./vk-freinds.html') Список друзей VK
 		main.content
 			block content
 		footer
@@ -27,9 +33,3 @@ html(lang='ru')
 				.container
 					p.text-center
 						strong Andrey Chechkin
-		
-		script(id="list-template" type="text/x-handlebars-template")
-			ul.
-				{{#each cities}}
-					#[li {{name}}]
-				{{/each}}

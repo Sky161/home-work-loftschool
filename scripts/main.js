@@ -14,6 +14,9 @@ const handlebars = require("handlebars");
 //async
 const homework2 = require("./modules/06-async/list-city.js");
 
+//api
+const vkList = require("./modules/08-vk.js");
+
 window.onload = () => {
 	bootstrap;
 	let resArr = [];
@@ -38,32 +41,34 @@ window.onload = () => {
 	homework2.list("https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json").then(
 		(xhr) => {
 			let resArr = sortArray(xhr.response);
-			let templateListHtml = document.getElementById("list-template").innerHTML;
-			let compileTmp = handlebars.compile(templateListHtml);
-			let resultContainer = document.getElementById("result");
-			let input = document.getElementById("get-city");
-			let searchArr = [];
-
-			let result = compileTmp({"cities": resArr});
-			resultContainer.innerHTML = result;
-
-			input.addEventListener("input", (e) => {
-				let val = e.target.value;
+			let templateListHtml = document.getElementById("list-template");
+			if(templateListHtml) {
+				let compileTmp = handlebars.compile(templateListHtml.innerHTML);
+				let resultContainer = document.getElementById("result");
+				let input = document.getElementById("get-city");
 				let searchArr = [];
-
-				if(val.length > 0) {
-					searchArr = resArr.filter((item) => {
-						if(item.name.toLowerCase().indexOf(val.toLowerCase()) != -1){
-							return item;
-						}
-					});
-				}else{
-					searchArr = resArr;
-				}
-				
-				result = compileTmp({"cities": searchArr});
+				let result = compileTmp({"cities": resArr});
 				resultContainer.innerHTML = result;
-			});
-	})
 
+				input.addEventListener("input", (e) => {
+					let val = e.target.value;
+					let searchArr = [];
+
+					if(val.length > 0) {
+						searchArr = resArr.filter((item) => {
+							if(item.name.toLowerCase().indexOf(val.toLowerCase()) != -1){
+								return item;
+							}
+						});
+					}else{
+						searchArr = resArr;
+					}
+
+					result = compileTmp({"cities": searchArr});
+					resultContainer.innerHTML = result;
+				});
+			}
+	});
+
+	vkList();
 }

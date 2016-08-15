@@ -1,0 +1,20 @@
+extends ./layot.jade
+
+block content
+	.container#list-friends
+	script(id="friends-template" type="text/x-handlebars-template")
+		table.table
+			thead
+				tr
+					th Фото
+					th ФИО
+					th Возраст
+					th Дата рождения
+			tbody.
+				{{#each friends}}
+					#[tr]
+						#[td: img(src="{{photo_100}}")]
+						#[td {{first_name}} {{last_name}}]
+						#[td {{age}}]
+						#[td {{bdate}}]
+				{{/each}}

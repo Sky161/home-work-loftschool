@@ -4,3 +4,8 @@ block content
 	.container
 		input.form-control(id="get-city", type="text")
 	.container#result
+	script(id="list-template" type="text/x-handlebars-template")
+		ul.
+			{{#each cities}}
+				#[li {{name}}]
+			{{/each}}
