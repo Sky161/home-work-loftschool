@@ -34,38 +34,63 @@ module.exports = () => {
 			return new Promise((resolve) => {
 				VK.api("friends.get", {fields: "bdate,photo_100"}, (friends) => {
 					let friendsObj = friends.response;
+					let friendsObjOffDate = [];
+					let friendsObjMonthBefore = [];
+					let friendsObjMonthAfter = [];
 
 					for(let item in friendsObj) {
 						let thisItem = friendsObj[item];
 						let bdate = thisItem.bdate;
+						let date = new Date();
+						let year = date.getFullYear();
+						let month = date.getMonth();
 
 						thisItem.age = "не указан";
 						thisItem.arrBdate = [];
 
 						if(bdate) {
-							friendsObj[item].arrBdate = bdate.split(".");
-							let year = new Date().getFullYear();
+							thisItem.arrBdate = bdate.split(".");
 
 							if(thisItem.arrBdate[2]) {
 								thisItem.age = year - thisItem.arrBdate[2];
 							}
 
 						}
+
+						if(thisItem.arrBdate[1]){
+							thisItem.UnixDate = `2016-${thisItem.arrBdate[1]}-${thisItem.arrBdate[0]}`;
+
+							if(thisItem.arrBdate[1] <= month) {
+								friendsObjMonthBefore.push(thisItem);
+							}else{
+								friendsObjMonthAfter.push(thisItem);
+							}
+						}else{
+							friendsObjOffDate.push(thisItem);
+						}
 					}
 
-					let friendsObjOnDate = friendsObj.filter((item) => {
-						if(item.arrBdate[0] && item.arrBdate[1]){
-							return item;
-						}
-					});
+					const SortDate = (data) => {
+						data.sort((a, b) => {
+							let aParse = Date.parse(a.UnixDate);
+							let bParse = Date.parse(b.UnixDate);
 
-					let friendsObjOffDate = friendsObj.filter((item) => {
-						if(item.arrBdate.length == 0){
-							return item;
-						}
-					});
+							if(aParse > bParse){
+								return -1;
+							}else{
+								return 1;
+							}
 
-					let res = friendsObjOnDate.concat(friendsObjOffDate);
+							return 0
+						});
+
+						return data;
+					};
+
+					friendsObjMonthBefore = SortDate(friendsObjMonthBefore);
+					friendsObjMonthAfter = SortDate(friendsObjMonthAfter);
+
+					let res = friendsObjMonthBefore.concat(friendsObjMonthAfter).concat(friendsObjOffDate);
 
 					resolve(res);
 				});
