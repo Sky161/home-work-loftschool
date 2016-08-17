@@ -152,12 +152,13 @@ new Promise(function(resolve) {
         globalPlayer.src = e.target.getAttribute('data-src');
         globalPlayer.play();
       }
-    }else if(e.target.className === "progress") {
+    }else if(e.target.className === "progress" || e.target.className === "progress-bar progress-bar-danger") {
       var currentItem = e.target.closest("li");
 
       if (currentItem === playingItem) {
+        let progressContainer = playingItem.getElementsByClassName("progress")[0];
         let leftXpx = e.offsetX;
-        let progressBarWidth = e.target.offsetWidth;
+        let progressBarWidth = progressContainer.offsetWidth;
         let percentWidth = parseInt(100 / progressBarWidth * leftXpx);
         let curTime = parseInt(globalPlayer.duration * percentWidth / 100);
 
