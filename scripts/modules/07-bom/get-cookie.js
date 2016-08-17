@@ -8,18 +8,18 @@
 'use strict';
 
 const getCookie = () => {
-	let date = new Date;
 	let cookieObj = {};
 	let cookieArr;
 
 	const addCookie = (name, value, duration) => {
+		let date = new Date;
 		date.setDate(date.getDate() + duration);
 		document.cookie = `${name}=${value}; path=/; expires=${date.toUTCString()}`;
 	};
 
 	addCookie("name", "Andrey", 1);
-	addCookie("surname", "Chechkin", 2);
-	addCookie("age", "23", 3);
+	addCookie("surname", "Chechkin", 1);
+	addCookie("age", "23", 1);
 
 	cookieArr = document.cookie.split(";");
 
@@ -48,6 +48,7 @@ const getCookie = () => {
 
 	tableBody.onclick = (e) => {
 		if(e.target.localName === "a") {
+			let date = new Date;
 			let target = e.target;
 			let nameCookie = target.getAttribute("href");
 			let msg = confirm(`Удалить cookie с именем ${nameCookie}`);
@@ -84,9 +85,9 @@ const getCookie = () => {
 		} else {
 			let name = inputs.name.value;
 			let val = inputs.value.value;
-			let duration = inputs.duration.value;
+			let duration = Number(inputs.duration.value);
 			let tr = document.createElement("tr");
-
+			console.log(duration);
 			addCookie(name, val, duration);
 			tr.innerHTML = `
 				<td>${name}</td>
