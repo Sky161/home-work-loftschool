@@ -51,7 +51,6 @@ new Promise(function(resolve) {
     let duration = e.target.duration;
     let currentTime = e.target.currentTime;
     let progress = parseInt(100 / duration * currentTime);
-
     progressBar.style.width = progress + '%';
   }
 
@@ -143,12 +142,26 @@ new Promise(function(resolve) {
       } else {
         if (!globalPlayer.paused) {
           onPause();
+          let progressBar = playingItem.querySelector('[data-role=progressbar]');
+
+          progressBar.style.width = 0;
         }
 
         playingItem = currentItem;
 
         globalPlayer.src = e.target.getAttribute('data-src');
         globalPlayer.play();
+      }
+    }else if(e.target.className === "progress") {
+      var currentItem = e.target.closest("li");
+
+      if (currentItem === playingItem) {
+        let leftXpx = e.offsetX;
+        let progressBarWidth = e.target.offsetWidth;
+        let percentWidth = parseInt(100 / progressBarWidth * leftXpx);
+        let curTime = parseInt(globalPlayer.duration * percentWidth / 100);
+
+        globalPlayer.currentTime = curTime;
       }
     }
   }, true);
@@ -171,4 +184,3 @@ new Promise(function(resolve) {
 }).catch(function(e) {
   alert(`Ошибка: ${e.message}`);
 });
-
