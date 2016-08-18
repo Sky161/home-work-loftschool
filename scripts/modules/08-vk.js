@@ -43,7 +43,7 @@ module.exports = () => {
 						let bdate = thisItem.bdate;
 						let date = new Date();
 						let year = date.getFullYear();
-						let month = date.getMonth();
+						let month = date.getMonth() + 1;
 
 						thisItem.age = "не указан";
 						thisItem.arrBdate = [];
