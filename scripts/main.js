@@ -5,40 +5,39 @@
 * @license GNU/AGPLv3
 * @see {@link https://www.gnu.org/licenses/agpl-3.0.txt|License}
 */
-'use strict'
+'use strict';
 
 //Second Home Work
-const secondHW = require("./modules/second-home-work/main-home-work.js");
-const secondHWCalculator = require("./modules/second-home-work/calc-module.js");
-
-var allNumbers = [1, 2, 4, 5, 6, 7, 8],
-someNumbers = [1, 2, 'привет', 4, 5, 'loftschool', 6, 7, 8],
-noNumbers = ['это', 'массив', 'без', 'чисел'];
-
-let isNumber = function (val) {
-	return typeof val === 'number';
-}
-
-//#1
-console.log("################1################");
-console.log(secondHW.isAllTrue(allNumbers, isNumber));
-console.log(secondHW.isAllTrue(someNumbers, isNumber));
-console.log(secondHW.isAllTrue(noNumbers, isNumber));
-//console.log(secondHW.isAllTrue([], isNumber));
-
-//#2
-console.log("################2################");
-console.log(secondHW.isSomeTrue(someNumbers, isNumber));
-console.log(secondHW.isSomeTrue(someNumbers, isNumber));
-console.log(secondHW.isSomeTrue(noNumbers, isNumber));
-//console.log(secondHW.isAllTrue([], isNumber));
+const calcEs5 = require("./modules/second-home-work/calc-es5.js");
+const calcEs6 = require("./modules/second-home-work/calc-es6.js");
 
 //#3
-let myCalculator = secondHWCalculator.calculator(100);
+let myObjCalculator = new calcEs5.ObjCalculator(100);
+let mySqlCal = new calcEs5.SqlCalc(100);
+let es6ObjCalculator = new calcEs5.ObjCalculator(100);
+let es6SqlCal = new calcEs6.SqlCalc(100);
 
-console.log("################calculator################");
-console.log(myCalculator.sum(1, 2, 3));
-console.log(myCalculator.dif(10, 20));
-console.log(myCalculator.div(2, 2));
-console.log(myCalculator.mul(2, 2));
-//console.log(myCalculator.div(0, 2));
+console.log("################calcEs6- ObjCalculator################");
+console.log(es6SqlCal.sum(1,2,3));
+console.log(es6SqlCal.dif(10, 20));
+console.log(es6SqlCal.div(2, 2));
+console.log(es6SqlCal.mul(2, 2));
+
+console.log("################calcEs6 - mySqlCal################");
+console.log(es6ObjCalculator.sum(1,2,3));
+console.log(es6ObjCalculator.dif(10, 20));
+console.log(es6ObjCalculator.div(2, 2));
+console.log(es6ObjCalculator.mul(2, 2));
+
+console.log("################calcEs5 - mySqlCal################");
+console.log(mySqlCal.sum(1,2,3));
+console.log(mySqlCal.dif(10, 20));
+console.log(mySqlCal.div(2, 2));
+console.log(mySqlCal.mul(2, 2));
+
+
+console.log("################calcEs5- ObjCalculator################");
+console.log(myObjCalculator.sum(1,2,3));
+console.log(myObjCalculator.dif(10, 20));
+console.log(myObjCalculator.div(2, 2));
+console.log(myObjCalculator.mul(2, 2));
