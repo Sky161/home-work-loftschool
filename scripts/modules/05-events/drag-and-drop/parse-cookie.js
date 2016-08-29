@@ -18,20 +18,22 @@ module.exports = () => {
 			}
 		});
 
-		items = items.replace(/items=/g, '');
-		let itemsObj = JSON.parse(items);
-		let htmlFragment = document.createDocumentFragment();
+		if(items) {
+			items = items.replace(/items=/g, '');
+			let itemsObj = JSON.parse(items);
+			let htmlFragment = document.createDocumentFragment();
 
-		for (let i in itemsObj) {
-			let newElement = document.createElement("div");
-			let styles = itemsObj[i].style.join(";");
+			for (let i in itemsObj) {
+				let newElement = document.createElement("div");
+				let styles = itemsObj[i].style.join(";");
 
-			newElement.id = itemsObj[i].id;
-			newElement.className = itemsObj[i].className;
-			newElement.setAttribute("style", styles);
-			htmlFragment.appendChild(newElement);
+				newElement.id = itemsObj[i].id;
+				newElement.className = itemsObj[i].className;
+				newElement.setAttribute("style", styles);
+				htmlFragment.appendChild(newElement);
+			}
+
+			area.appendChild(htmlFragment);
 		}
-
-		area.appendChild(htmlFragment);
 	}
 }
