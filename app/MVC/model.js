@@ -39,5 +39,28 @@ var Model = {
     },
     getGroup: function() {
         return this.callApi('groups.get', {extended: 1, v: 5.53});
-    }
+    },
+    getPhoto: function() {
+      return this.callApi('photos.getAlbums', {v: 5.53}).then((album) => {
+        let photos = [];
+
+        const getPhotos = (id) => {
+          this.callApi('photos.get', {v: 5.53, album_id: id}).then((photo) => {
+            photo.items.forEach((item) => {
+              photos.push(item);
+            });
+          });
+        };
+
+        album.items.forEach((item) => {
+          getPhotos(item.id);
+        });
+
+        Promise.resolve(getPhotos("wall"))
+        .then(getPhotos("profile"))
+        .then(getPhotos("saved"));
+
+        return photos;
+      });
+    },
 };

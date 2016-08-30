@@ -19,5 +19,10 @@ var Controller = {
             console.dir(groups.items);
             results.innerHTML = View.render('groups', {list: groups.items});
         });
+    },
+    photoRoute: function() {
+      return Model.getPhoto().then(function(photos) {
+        console.log(photos);
+      });
     }
 };
