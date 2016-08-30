@@ -12,6 +12,10 @@
             float: left;
             margin: 15px;
         }
+
+        .group {
+            margin-bottom: 25px;
+        }
     </style>
 </head>
 <body>
@@ -22,6 +26,7 @@
         <button type="button" class="btn btn-default" onclick="Router.handle('music')">Музыка</button>
         <button type="button" class="btn btn-default" onclick="Router.handle('friends')">Друзья</button>
         <button type="button" class="btn btn-default" onclick="Router.handle('news')">Новости</button>
+        <button type="button" class="btn btn-default" onclick="Router.handle('group')">Группы</button>
     </div>
     <hr>
     <div id="results"></div>
@@ -58,6 +63,17 @@
         <div class="friend text-center">
             <img src="{{photo_100}}" class="img-circle">
             <div>{{first_name}}<br>{{last_name}}</div>
+        </div>
+        {{/each}}
+    </div>
+</script>
+
+<script type="text/x-handlebars-template" id="groupsTemplate">
+    <div class="row">
+        {{#each list}}
+        <div class="text-center group col-md-3">
+            <img src="{{photo_100}}" class="img-circle">
+            <div>{{name}}</div>
         </div>
         {{/each}}
     </div>

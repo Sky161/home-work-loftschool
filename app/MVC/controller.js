@@ -13,5 +13,11 @@ var Controller = {
         return Model.getNews().then(function(news) {
             results.innerHTML = View.render('news', {list: news.items});
         });
+    },
+    groupRoute: function() {
+        return Model.getGroup().then(function(groups) {
+            console.dir(groups.items);
+            results.innerHTML = View.render('groups', {list: groups.items});
+        });
     }
 };

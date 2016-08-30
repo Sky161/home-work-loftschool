@@ -36,5 +36,8 @@ var Model = {
     },
     getNews: function() {
         return this.callApi('newsfeed.get', {filters: 'post', count: 20});
+    },
+    getGroup: function() {
+        return this.callApi('groups.get', {extended: 1, v: 5.53});
     }
 };
