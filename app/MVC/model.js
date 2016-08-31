@@ -41,26 +41,33 @@ var Model = {
         return this.callApi('groups.get', {extended: 1, v: 5.53});
     },
     getPhoto: function() {
-      return this.callApi('photos.getAlbums', {v: 5.53}).then((album) => {
-        let photos = [];
+        return this.callApi('photos.getAlbums', {v: 5.53}).then((album) => {
+            return new Promise((resolve) => {
+                let photos = [];
 
-        const getPhotos = (id) => {
-          this.callApi('photos.get', {v: 5.53, album_id: id}).then((photo) => {
-            photo.items.forEach((item) => {
-              photos.push(item);
+                const getPhotos = (id) => {
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            this.callApi('photos.get', {v: 5.53, album_id: id, extended: 1}).then((photo) => {
+                                photo.items.forEach((item) => {
+                                    photos.push(item);
+                                });
+                            });
+                            resolve();
+                        }, 1000);
+                    });
+                };
+
+                getPhotos("profile")
+                    .then(() => { return getPhotos("wall") })
+                    .then(() => {
+                        return album.items.forEach((item) => {
+                            getPhotos(item.id);
+                        });
+                    })
+                    .then(() => { return getPhotos("saved") })
+                    .then(() => { resolve(photos) });
             });
-          });
-        };
-
-        album.items.forEach((item) => {
-          getPhotos(item.id);
         });
-
-        Promise.resolve(getPhotos("wall"))
-        .then(getPhotos("profile"))
-        .then(getPhotos("saved"));
-
-        return photos;
-      });
-    },
+    }
 };

@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script   src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script src="http://vk.com/js/api/openapi.js" type="text/javascript"></script>
 
@@ -13,8 +16,28 @@
             margin: 15px;
         }
 
+        .row {
+            font-size: 0;
+        }
         .group {
             margin-bottom: 25px;
+            float: none;
+            display: inline-block;
+            font-size: 12px;
+        }
+
+        .photo-text {
+            font-size: 16px;
+        }
+
+        .photo img {
+            width: 100%;
+        }
+
+        .photo {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
@@ -78,6 +101,21 @@
         </div>
         {{/each}}
     </div>
+</script>
+
+<script type="text/x-handlebars-template" id="photosTemplate">
+        {{#each list}}
+        <div class="row photo">
+            <div class="col-md-6">
+                <img src="{{photo_604}}">
+            </div>
+            <div class="col-md-6 photo-text">
+                <p><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{likes.count}}</p>
+                <p><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> {{reposts.count}}</p>
+                <p><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{comments.count}}</p>
+            </div>
+        </div>
+        {{/each}}
 </script>
 
 <script type="text/x-handlebars-template" id="newsTemplate">

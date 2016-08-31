@@ -16,13 +16,12 @@ var Controller = {
     },
     groupRoute: function() {
         return Model.getGroup().then(function(groups) {
-            console.dir(groups.items);
             results.innerHTML = View.render('groups', {list: groups.items});
         });
     },
     photoRoute: function() {
       return Model.getPhoto().then(function(photos) {
-        console.log(photos);
+          results.innerHTML = View.render('photos', {list: photos});
       });
     }
 };
