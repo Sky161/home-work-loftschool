@@ -7,14 +7,24 @@
 */
 'use strict';
 
-require("jquery");
-var bootstrap = require("bootstrap");
+const fs = require("fs");
+let separator = "";
 
-//bom
-let bom1 = require("./modules/07-bom/get-cookie.js");
+const readDir = (dirSearch) => {
+  let dirs = fs.readdirSync(dirSearch);
+  separator += "-";
 
-window.onload = () => {
-	bootstrap;
+  for (let dir of dirs) {
+    dir = dirSearch + '/' + dir;
+    let stat = fs.statSync(dir);
+    let size = stat.size / 1024;
 
-	bom1.getCookie();
+    console.log(`${separator} ${dir} (${size}kb)`);
+
+    if(stat.isDirectory()) {
+      readDir(dir);
+    }
+  }
 }
+
+readDir("./scripts");
