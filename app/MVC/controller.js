@@ -21,7 +21,7 @@ var Controller = {
     },
     photoRoute: function() {
       return Model.getPhoto().then(function(photos) {
-          results.innerHTML = View.render('photos', {list: photos});
+        results.innerHTML = View.render('photos', {list: photos});
       });
     }
 };
